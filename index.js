@@ -4,11 +4,8 @@ const port = 3000
 
 const produtoRota = require("./controllers/produto/router.js")
 const usuarioRouter = require("./controllers/usuario/router.js");
-<<<<<<< HEAD
 const comentarioRouter = require("./controllers/comentario/router.js");
-=======
 const carrinhoRouter = require('./controllers/carrinho/router.js');
->>>>>>> 4b732f9 (Carrinho)
 
 app.get('/', (req, res) => {
   res.send('A documentação da api')
