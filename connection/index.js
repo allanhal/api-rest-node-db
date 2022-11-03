@@ -7,9 +7,14 @@ async function executarNoBanco(query) {
         user: config.DB_USER,
         password: config.DB_PASSWORD,
         database: config.DB_NAME,
+        // waitForConnections: true,
+        // connectionLimit: 10,
+        // connectTimeout: 15000,
     });
 
     const [results, ] = await conexao.execute(query);
+
+    await conexao.end();
 
     return results;
 }
