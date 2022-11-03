@@ -3,15 +3,19 @@ const route = express.Router();
 
 const comentario = require("./comentario")
 
-route.get('/comentario/:produtoId', (req, res) => {
-    res.send(comentario.listar(req.params.produtoId))
+route.get('/comentario/:produtoId', async (req, res) => {
+    res.send(await comentario.listar(req.params.produtoId))
 })
-route.get('/comentario', (req, res) => {
+route.get('/comentario', async(req, res) => {
     if (!req.query.produtoId) {
         res.status(400)
         res.send("nao enviou o produtoID")
     }
-    console.log('req.query.autor', req.query.autor)
-    res.send(comentario.listarAutor(req.query.produtoId, req.query.autor))
+    
+    res.send(await comentario.listarAutor(req.query.produtoId, req.query.autor))
+})
+
+route.get('/comentarioAutorProduto', async(req, res) => {
+    res.send(await comentario.listarAutorProduto(req.query.autor))
 })
 module.exports = route;
