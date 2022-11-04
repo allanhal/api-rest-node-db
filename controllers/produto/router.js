@@ -3,8 +3,8 @@ const route = express.Router();
 
 const produto = require("./produto")
 
-route.get('/produto', (req, res) => {
-res.send(produto.listar())
+route.get('/produtos', async (req, res) => {
+    res.send(await produto.listar(req.query))
 })
 
 route.post('/produto', (req, res) => {

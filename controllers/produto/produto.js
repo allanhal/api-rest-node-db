@@ -1,8 +1,11 @@
-
+const {executarNoBanco} = require('../../connection');
 let fs = require('fs');
 
-function listar() {
-    return JSON.parse(fs.readFileSync('controllers/produto/produtos.chuchu').toString());
+async function listar(params) {
+    let limit = params.limit || 10; 
+    let page = (params.page || 0) * limit;
+
+    return await executarNoBanco(`SELECT * FROM produtos LIMIT ${page},${limit}`);
 }
 
 function criar(produto) {
