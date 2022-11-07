@@ -8,7 +8,7 @@ app.use(express.json());
 
 async function executarNoBanco(query) {
   const conexao = await mysql.createConnection({
-    host: "localhost",
+    host: "database-1.cunwvpjcg0v5.us-east-1.rds.amazonaws.com",
     user: "admin",
     password: "12345678",
     database: "dc",
