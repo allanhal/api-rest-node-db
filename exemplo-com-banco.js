@@ -53,7 +53,7 @@ async function executarNoBanco(query) {
     host: process.argv[2],
     user: process.argv[3],
     password: process.argv[4],
-    database: process.argv[5],
+    database: 'sys',
   });
 
   const [results] = await conexao.execute(query);
