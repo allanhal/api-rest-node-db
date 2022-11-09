@@ -2,18 +2,29 @@ const express = require("express");
 const mysql = require("mysql2/promise");
 require('dotenv').config()
 
+const { Sequelize } = require('sequelize');
+
+const sequelize = new Sequelize(process.argv[5], process.argv[3], process.argv[4], {
+  host: process.argv[2],
+  dialect: 'mysql'
+});
+
+async function test(){
+  try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+}
+
+test();
+
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
-const { HOST, USER, PASSWORD, DATABASE } = process.env
-
-// console.log({ HOST, USER, PASSWORD, DATABASE })
-
-// process.argv.forEach(function (val, index, array) {
-//   console.log(index + ': ' + val);
-// });
 
 async function executarNoBanco(query) {
   const conexao = await mysql.createConnection({
