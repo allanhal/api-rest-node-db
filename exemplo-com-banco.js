@@ -9,11 +9,12 @@ const sequelize = new Sequelize('sys', process.argv[3], process.argv[4], {
   dialect: 'mysql'
 });
 
+let Produtos = {}
 async function test() {
   try {
     // await sequelize.createSchema('dc', { ifNotExists: true });
     await sequelize.authenticate();
-    const Produtos = sequelize.define('Produtos', {
+    Produtos = sequelize.define('Produtos', {
       // Model attributes are defined here
       valor: {
         type: DataTypes.STRING,
@@ -65,6 +66,19 @@ app.get("/produtos", async (req, res) => {
   let produtos = await executarNoBanco("SELECT * FROM Produtos");
 
   res.send(produtos);
+});
+
+app.get("/criarProdutos", async (req, res) => {
+  const resultadoCreate = await Produtos.create({
+    nome: req.query.nome,
+    valor: "10",
+    categoria: 'Um mouse USB bonitão',
+    tamanho: 'unico'
+  })
+
+  await Produtos.save();
+  await Produtos.sync();
+  console.log(resultadoCreate);
 });
 
 app.get("/produtos/:id", async (req, res) => {
