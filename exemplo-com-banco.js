@@ -78,7 +78,8 @@ app.get("/criarProdutos", async (req, res) => {
 
   // await Produtos.save();
   // await Produtos.sync();
-  console.log(resultadoCreate);
+  // console.log(resultadoCreate);
+  res.send()
 });
 
 app.get("/produtos/:id", async (req, res) => {
