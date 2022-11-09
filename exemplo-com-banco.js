@@ -76,8 +76,8 @@ app.get("/criarProdutos", async (req, res) => {
     tamanho: 'unico'
   })
 
-  await Produtos.save();
-  await Produtos.sync();
+  // await Produtos.save();
+  // await Produtos.sync();
   console.log(resultadoCreate);
 });
 
