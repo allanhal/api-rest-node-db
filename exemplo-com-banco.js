@@ -1,17 +1,20 @@
 const express = require("express");
 const mysql = require("mysql2/promise");
+require('dotenv').config()
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
+const { HOST, USER, PASSWORD, DATABASE } = process.env
+
 async function executarNoBanco(query) {
   const conexao = await mysql.createConnection({
-    host: "database-1.cunwvpjcg0v5.us-east-1.rds.amazonaws.com",
-    user: "admin",
-    password: "12345678",
-    database: "dc",
+    host: HOST,
+    user: USER,
+    password: PASSWORD,
+    database: DATABASE,
   });
 
   const [results] = await conexao.execute(query);
@@ -71,5 +74,5 @@ app.patch("/produtos/:id", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("Servidor rodando em http://localhost:"+port);
+  console.log("Servidor rodando em http://localhost:" + port);
 });
