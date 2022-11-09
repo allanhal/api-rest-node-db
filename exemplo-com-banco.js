@@ -9,14 +9,18 @@ app.use(express.json());
 
 const { HOST, USER, PASSWORD, DATABASE } = process.env
 
-console.log({ HOST, USER, PASSWORD, DATABASE })
+// console.log({ HOST, USER, PASSWORD, DATABASE })
+
+// process.argv.forEach(function (val, index, array) {
+//   console.log(index + ': ' + val);
+// });
 
 async function executarNoBanco(query) {
   const conexao = await mysql.createConnection({
-    host: HOST,
-    user: USER,
-    password: PASSWORD,
-    database: DATABASE,
+    host: process.argv[2],
+    user: process.argv[3],
+    password: process.argv[4],
+    database: process.argv[5],
   });
 
   const [results] = await conexao.execute(query);
