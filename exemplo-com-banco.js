@@ -9,10 +9,31 @@ const sequelize = new Sequelize('sys', process.argv[3], process.argv[4], {
   dialect: 'mysql'
 });
 
-async function test(){
+async function test() {
   try {
-    await sequelize.createSchema('dc', { ifNotExists: true });
-    // await sequelize.authenticate();
+    // await sequelize.createSchema('dc', { ifNotExists: true });
+    await sequelize.authenticate();
+    const Produtos = sequelize.define('Produtos', {
+      // Model attributes are defined here
+      valor: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      categoria: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      nome: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      tamanho: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+    });
+    await Produtos.sync()
+    // await sequelize.close()
     console.log('Connection has been established successfully.');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
