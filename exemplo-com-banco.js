@@ -2,7 +2,7 @@ const express = require("express");
 const mysql = require("mysql2/promise");
 require('dotenv').config()
 
-const { Sequelize } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 
 const sequelize = new Sequelize('sys', process.argv[3], process.argv[4], {
   host: process.argv[2],
