@@ -62,7 +62,7 @@ async function executarNoBanco(query) {
 }
 
 app.get("/produtos", async (req, res) => {
-  let produtos = await executarNoBanco("SELECT * FROM produtos");
+  let produtos = await executarNoBanco("SELECT * FROM Produtos");
 
   res.send(produtos);
 });
