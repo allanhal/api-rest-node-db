@@ -11,6 +11,7 @@ const sequelize = new Sequelize(process.argv[5], process.argv[3], process.argv[4
 
 async function test(){
   try {
+    await sequelize.createSchema('dc', { ifNotExists: true });
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
   } catch (error) {
